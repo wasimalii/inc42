@@ -4,7 +4,7 @@
 set -e
 
 # Change directory to the project's backend folder.
-cd /root/test/inc42/backend
+cd /home/wasimali/inc42/backend
 
 # Fetch all updates from the remote repository.
 git fetch --all
@@ -22,13 +22,13 @@ git pull
 /usr/local/go/bin/go build -o myapp-backend-api main.go
 
 # Move the newly built binary to /usr/local/bin for easy execution.
-mv myapp-backend-api /usr/local/bin/
+sudo mv myapp-backend-api /usr/local/bin/
 
 # Restart the backend service to apply the new binary.
-systemctl restart my-app-backend.service
+sudo systemctl restart my-app-backend.service
 
 # Check the status of the backend service to ensure it restarted correctly.
-systemctl status my-app-backend.service
+sudo systemctl status my-app-backend.service
 
 # Output "SUCCESS" to indicate that the script completed successfully.
 echo "SUCCESS"
