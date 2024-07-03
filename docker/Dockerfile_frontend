@@ -1,0 +1,5 @@
+FROM node:18
+WORKDIR /root/app-frontend-react
+COPY app-frontend-react/ /root/app-frontend-react/
+CMD ["npm", "start"]
+#CMD ["/bin/bash", "-c", "export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\" && [ -s \"$NVM_DIR/bash_completion\" ] && . \"$NVM_DIR/bash_completion\" && npm start"]
