@@ -1,12 +1,34 @@
 #!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
 set -e
-cd /root/test/inc42/backend 
-git fetch --all 
-git checkout $1 
-git pull 
-/usr/local/go/bin/go mod tidy 
+
+# Change directory to the project's backend folder.
+cd /root/test/inc42/backend
+
+# Fetch all updates from the remote repository.
+git fetch --all
+
+# Checkout to the branch or commit specified by the first argument passed to the script.
+git checkout $1
+
+# Pull the latest changes from the remote repository.
+git pull
+
+# Installing dependencies
+/usr/local/go/bin/go mod tidy
+
+# Buliding go backend
 /usr/local/go/bin/go build -o myapp-backend-api main.go
-mv myapp-backend-api /usr/local/bin/ 
-systemctl restart my-app-backend.service 
-systemctl status my-app-backend.service 
+
+# Move the newly built binary to /usr/local/bin for easy execution.
+mv myapp-backend-api /usr/local/bin/
+
+# Restart the backend service to apply the new binary.
+systemctl restart my-app-backend.service
+
+# Check the status of the backend service to ensure it restarted correctly.
+systemctl status my-app-backend.service
+
+# Output "SUCCESS" to indicate that the script completed successfully.
 echo "SUCCESS"
