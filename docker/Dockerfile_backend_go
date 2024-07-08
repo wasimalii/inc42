@@ -1,0 +1,4 @@
+FROM go:1.18
+COPY backend/ /root/backend/
+WORKDIR /root/backend
+CMD ["bash", "-c", "exec /root/backend/myapp-backend-api"]

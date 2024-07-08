@@ -1,0 +1,21 @@
+# Use Ubuntu 22.04 as the base image
+FROM ubuntu:22.04
+
+# Set environment variables and install necessary packages
+ENV GO_VERSION=1.18.10
+
+RUN apt-get update && \
+    apt-get install -y wget tar && \
+    wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -O go.tar.gz && \
+    tar -C /usr/local -xzf go.tar.gz && \
+    rm go.tar.gz && \
+    apt-get clean
+
+# Set up Go environment variables
+ENV PATH="/usr/local/go/bin:${PATH}"
+
+# Verify the Go installation
+RUN go version
+
+
+
